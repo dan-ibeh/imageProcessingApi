@@ -2,5 +2,11 @@
   "rules": {
     "semi": ["error", "always"],
     "quotes": ["error", "double"]
-  }
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018,
+    "requireConfigFile": false
+  },
+  "parser": "@babel/eslint-parser"
 }
