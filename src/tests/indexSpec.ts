@@ -6,7 +6,7 @@ import fs from "fs";
 describe("Test endpoint responses", () => {
   const request = supertest(app);
   it("gets the api endpint successfully", async () => {
-    const response = await request.get("/api");
+    const response = await request.get("/");
     expect(response.status).toBe(200);
   });
 });
