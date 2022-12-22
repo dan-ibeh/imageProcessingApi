@@ -5,8 +5,16 @@
   },
   "parserOptions": {
     "sourceType": "module",
-    "ecmaVersion": 2018,
+    "ecmaVersion": 2020,
     "requireConfigFile": false
   },
-  "parser": "@babel/eslint-parser"
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ]
 }

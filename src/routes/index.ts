@@ -29,8 +29,8 @@ const runConvert = async (
 };
 
 routes.get("/", async (req: Request, res: Response): Promise<void> => {
-  const height: number = Number(req.query.height as unknown);
-  const width: number = Number(req.query.width as unknown);
+  const height: number = parseInt(req.query.height as unknown as string);
+  const width: number = parseInt(req.query.width as unknown as string);
   const filename = req.query.filename as unknown as string;
 
   try {
