@@ -1,12 +1,11 @@
 import express, { Request, Response } from "express";
 import sharp from "sharp";
 import fs from "fs";
+import path from "path";
 
 const routes = express.Router();
-const inputDir =
-  "C:/Users/Daniel Ibeh/OneDrive/Documents/Projects/Udacity Full Stack JavaScript Nanodegree/imageProcessingApi/imageProcessingApiDirs/input/";
-const outputDir =
-  "C:/Users/Daniel Ibeh/OneDrive/Documents/Projects/Udacity Full Stack JavaScript Nanodegree/imageProcessingApi/imageProcessingApiDirs/output/";
+const inputDir = path.join(__dirname, "../../imageProcessingApiDirs/input/");
+const outputDir = path.join(__dirname, "../../imageProcessingApiDirs/output/");
 
 const convert = async (
   filename: string,
@@ -47,4 +46,4 @@ routes.get("/", async (req: Request, res: Response): Promise<void> => {
   }
 });
 
-export { routes, convert };
+export { routes, convert, outputDir };

@@ -1,6 +1,6 @@
 import app from "../index";
 import supertest from "supertest";
-import { convert } from "../routes";
+import { convert, outputDir as output } from "../routes";
 import fs from "fs";
 
 describe("Test endpoint responses", (): void => {
@@ -12,10 +12,9 @@ describe("Test endpoint responses", (): void => {
 });
 
 describe("Test image conversion", (): void => {
-  const outputDir = "./imageProcessingApiDirs/output";
   it("checks that file exists in output directory", async (): Promise<void> => {
     await convert("icelandwaterfall", 200, 200);
-    const files = fs.readdirSync(outputDir);
+    const files = fs.readdirSync(output);
     expect(files).toContain("icelandwaterfall_thumb.jpg");
   });
 });
