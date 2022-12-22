@@ -12,6 +12,13 @@ describe("Test endpoint responses", (): void => {
 });
 
 describe("Test image conversion", (): void => {
+  const request = supertest(app);
+  it("gets the image endpint successfully", async (): Promise<void> => {
+    const response = await request.get(
+      "/image?filename=icelandwaterfall&width=200&height=200"
+    );
+    expect(response.status).toBe(200);
+  });
   it("checks that file exists in output directory", async (): Promise<void> => {
     await convert("icelandwaterfall", 200, 200);
     const files = fs.readdirSync(output);

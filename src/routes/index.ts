@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import sharp from "sharp";
 import fs from "fs";
 import path from "path";
+import errors from "./api/errors";
 
 const routes = express.Router();
 const inputDir = path.join(__dirname, "../../imageProcessingApiDirs/input/");
@@ -27,12 +28,11 @@ const runConvert = async (
   res.sendFile(outputDir + `${filename}_thumb.jpg`);
 };
 
-routes.get("/", async (req: Request, res: Response): Promise<void> => {
-  const height: number = parseInt(req.query.height as unknown as string);
-  const width: number = parseInt(req.query.width as unknown as string);
-  const filename = req.query.filename as unknown as string;
-
+routes.get("/", errors, (req: Request, res: Response): void => {
   try {
+    const height: number = parseInt(req.query.height as unknown as string);
+    const width: number = parseInt(req.query.width as unknown as string);
+    const filename = req.query.filename as unknown as string;
     // check if file exists
     if (fs.existsSync(outputDir + `${filename}_thumb.jpg`)) {
       // if file exists, display file
