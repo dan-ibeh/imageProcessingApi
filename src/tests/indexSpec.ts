@@ -22,6 +22,6 @@ describe("Test image conversion", (): void => {
   it("checks that file exists in output directory", async (): Promise<void> => {
     await convert("icelandwaterfall", 200, 200);
     const files = fs.readdirSync(output);
-    expect(files).toContain("icelandwaterfall_thumb.jpg");
+    expect(files).toContain("icelandwaterfall_200x200_thumb.jpg");
   });
 });

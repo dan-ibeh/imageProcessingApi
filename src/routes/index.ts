@@ -15,7 +15,7 @@ const convert = async (
 ): Promise<void> => {
   await sharp(inputDir + `${filename}.jpg`)
     .resize(width, height)
-    .toFile(outputDir + `${filename}_thumb.jpg`);
+    .toFile(outputDir + `${filename}_${height}x${width}_thumb.jpg`);
 };
 
 const runConvert = async (
@@ -25,7 +25,7 @@ const runConvert = async (
   width: number
 ): Promise<void> => {
   await convert(filename, height, width);
-  res.sendFile(outputDir + `${filename}_thumb.jpg`);
+  res.sendFile(outputDir + `${filename}_${height}x${width}_thumb.jpg`);
 };
 
 routes.get("/", errors, (req: Request, res: Response): void => {
