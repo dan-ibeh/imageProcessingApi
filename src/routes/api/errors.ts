@@ -3,7 +3,6 @@ import { inputDir } from "../index";
 import fs from "fs";
 
 const errors = (
-  err: Error,
   req: Request,
   res: Response,
   next: NextFunction
