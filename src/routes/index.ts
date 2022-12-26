@@ -13,6 +13,10 @@ const convert = async (
   height: number,
   width: number
 ): Promise<void> => {
+  // if directory doesn't exist, create directory
+  fs.mkdir(outputDir, { recursive: true }, (err) => {
+    if (err) throw err;
+  });
   await sharp(inputDir + `${filename}.jpg`)
     .resize(width, height)
     .toFile(outputDir + `${filename}_${height}x${width}_thumb.jpg`);
@@ -38,10 +42,6 @@ routes.get("/", errors, (req: Request, res: Response): void => {
       // if file exists, display file
       res.sendFile(outputDir + `${filename}_thumb.jpg`);
     } else {
-      // if directory doesn't exist, create directory
-      fs.mkdir(outputDir, { recursive: true }, (err) => {
-        if (err) throw err;
-      });
       // if file doesn't exists, create and display file
       runConvert(res, filename, height, width);
     }
