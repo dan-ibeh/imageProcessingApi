@@ -38,6 +38,10 @@ routes.get("/", errors, (req: Request, res: Response): void => {
       // if file exists, display file
       res.sendFile(outputDir + `${filename}_thumb.jpg`);
     } else {
+      // if directory doesn't exist, create directory
+      fs.mkdir(outputDir, { recursive: true }, (err) => {
+        if (err) throw err;
+      });
       // if file doesn't exists, create and display file
       runConvert(res, filename, height, width);
     }
@@ -46,4 +50,4 @@ routes.get("/", errors, (req: Request, res: Response): void => {
   }
 });
 
-export { routes, convert, outputDir };
+export { routes, convert, inputDir, outputDir };
