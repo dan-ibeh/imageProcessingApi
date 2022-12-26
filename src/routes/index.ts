@@ -38,9 +38,9 @@ routes.get("/", errors, (req: Request, res: Response): void => {
     const width: number = parseInt(req.query.width as unknown as string);
     const filename = req.query.filename as unknown as string;
     // check if file exists
-    if (fs.existsSync(outputDir + `${filename}_thumb.jpg`)) {
+    if (fs.existsSync(outputDir + `${filename}_${height}x${width}_thumb.jpg`)) {
       // if file exists, display file
-      res.sendFile(outputDir + `${filename}_thumb.jpg`);
+      res.sendFile(outputDir + `${filename}_${height}x${width}_thumb.jpg`);
     } else {
       // if file doesn't exists, create and display file
       runConvert(res, filename, height, width);
